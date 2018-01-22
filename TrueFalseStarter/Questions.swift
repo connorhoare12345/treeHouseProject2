@@ -19,7 +19,7 @@ struct QuizModel {
 
 // Storing Questions
 
-struct QuizManager {
+class QuizManager {
     
     let questions = [
        QuizModel(question: "Oranges represent what in The Godfather movies?", possibleAnswers: ["Life", "Death", "A new beggining"], answer: 1),
@@ -45,7 +45,9 @@ struct QuizManager {
        QuizModel(question: "Who plays Fred Claus in the 2007 film?", possibleAnswers: ["Vince Vaughan", "Heath Ledger", "Matt Damon", "Will Smith"], answer: 0),
        QuizModel(question: "Which comedy movie features a man who is killed in a car accident and comes back to life as a snowman?", possibleAnswers: ["Bad Santa", "Fred Clause", "Jack Frost"], answer: 2),
        ]
+       
 }
+
 
 
 

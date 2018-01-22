@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGameStartSound()
@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         playGameStartSound()
         displayQuestion()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
         nextRound()
     }
     
-
+    
     
     // MARK: Helper Methods
     
