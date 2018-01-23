@@ -10,6 +10,7 @@ import Foundation
 import GameKit
 
 private let viewController = ViewController()
+
 // Template for Questions and answers
 
 struct QuizModel {
@@ -21,6 +22,7 @@ struct QuizModel {
 // Storing Questions
 
 class QuizManager {
+    
     
     var questionIndex: Int = 0
     
@@ -60,18 +62,19 @@ class QuizManager {
     
     // Check for the correct answer
    
-    func answerChecker() {
+    func answerChecker(answer: String) -> Bool{
         
         let questionArray = questions[questionIndex]
-        let correctAnswer = displayQuestion().answer
-        let possibleAnswers = displayQuestion().possibleAnswers
+        let correctAnswer = questionArray.answer
         
-        for answer in possibleAnswers {
-            if correctAnswer == answer {
-                viewController.questionField.text = "Correct"
-            } else {
-                viewController.questionField.text = "Sorry, that is the wrong answer"
-            }
+        print(correctAnswer)
+        print(answer)
+        
+        if correctAnswer == answer {
+            return true
+        } else {
+            return false
+                
         }
     }
 }

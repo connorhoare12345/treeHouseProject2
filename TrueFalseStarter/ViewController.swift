@@ -23,11 +23,13 @@ class ViewController: UIViewController {
     
 
     
-    @IBOutlet weak var secondaryAnswerThree: UIButton!
-    @IBOutlet weak var secondaryAnswerOne: UIButton!
+
+
+    @IBOutlet weak var answerOne: UIButton!
+    @IBOutlet weak var answerTwo: UIButton!
+    @IBOutlet weak var answerThree: UIButton!
+    @IBOutlet weak var answerFour: UIButton!
     @IBOutlet weak var questionField: UILabel!
-    @IBOutlet weak var trueButton: UIButton!
-    @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var playAgainButton: UIButton!
     
     
@@ -47,16 +49,30 @@ class ViewController: UIViewController {
     // Display Question with random selection
     
     func displayQuestion() {
-        quizManager.displayQuestion()
-        let questionDisplayed = quizManager.questions
-        questionField.text = quizManager.displayQuestion().question
+        let questionDisplayed = quizManager.displayQuestion()
+        questionField.text = questionDisplayed.question
+        let buttonArray: [UIButton] = [answerTwo, answerOne, answerThree, answerFour]
+
+        for i in 0...questionDisplayed.possibleAnswers.count - 1 {
+            buttonArray[i].isHidden = false
+            buttonArray[i].setTitle(questionDisplayed.possibleAnswers[i], for: .normal)
+        }
+        
+        if( questionDisplayed.possibleAnswers.count < buttonArray.count ) {
+            for i in questionDisplayed.possibleAnswers.count...buttonArray.count - 1 {
+                buttonArray[i].isHidden = true
+            }
+        }
+        
         playAgainButton.isHidden = true
     }
     
     func displayScore() {
         // Hide the answer buttons
-        trueButton.isHidden = true
-        falseButton.isHidden = true
+        answerOne.isHidden = true
+        answerTwo.isHidden = true
+        answerThree.isHidden = true
+        answerFour.isHidden = true
         
         // Display play again button
         playAgainButton.isHidden = false
@@ -68,7 +84,13 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        quizManager.answerChecker()
+        let isCorrect: Bool = quizManager.answerChecker(answer: sender.currentTitle!)
+        if isCorrect {
+            correctQuestions += 1
+            questionField.text = "Correct"
+        } else {
+            questionField.text = "Sorry, Wrong Answer"
+        }
         
         loadNextRoundWithDelay(seconds: 2)
     }
@@ -85,8 +107,10 @@ class ViewController: UIViewController {
     
     @IBAction func playAgain() {
         // Show the answer buttons
-        trueButton.isHidden = false
-        falseButton.isHidden = false
+        answerOne.isHidden = false
+        answerTwo.isHidden = false
+        answerThree.isHidden = false
+        answerFour.isHidden = false
         
         questionsAsked = 0
         correctQuestions = 0
