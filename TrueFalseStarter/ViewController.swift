@@ -10,22 +10,21 @@ import UIKit
 import GameKit
 import AudioToolbox
 
+
 class ViewController: UIViewController {
+    
+    let quizManager = QuizManager()
     
     let questionsPerRound = 4
     var questionsAsked = 0
     var correctQuestions = 0
-    var indexOfSelectedQuestion: Int = 0
     
     var gameSound: SystemSoundID = 0
     
-    let trivia: [[String : String]] = [
-        ["Question": "Only female koalas can whistle", "Answer": "False"],
-        ["Question": "Blue whales are technically whales", "Answer": "True"],
-        ["Question": "Camels are cannibalistic", "Answer": "False"],
-        ["Question": "All ducks are birds", "Answer": "True"]
-    ]
+
     
+    @IBOutlet weak var secondaryAnswerThree: UIButton!
+    @IBOutlet weak var secondaryAnswerOne: UIButton!
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
@@ -45,10 +44,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // Display Question with random selection
+    
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextInt(upperBound: trivia.count)
-        let questionDictionary = trivia[indexOfSelectedQuestion]
-        questionField.text = questionDictionary["Question"]
+        quizManager.displayQuestion()
+        let questionDisplayed = quizManager.questions
+        questionField.text = quizManager.displayQuestion().question
         playAgainButton.isHidden = true
     }
     
@@ -61,22 +62,13 @@ class ViewController: UIViewController {
         playAgainButton.isHidden = false
         
         questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
-        
     }
     
     @IBAction func checkAnswer(_ sender: UIButton) {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        let selectedQuestionDict = trivia[indexOfSelectedQuestion]
-        let correctAnswer = selectedQuestionDict["Answer"]
-        
-        if (sender === trueButton &&  correctAnswer == "True") || (sender === falseButton && correctAnswer == "False") {
-            correctQuestions += 1
-            questionField.text = "Correct!"
-        } else {
-            questionField.text = "Sorry, wrong answer!"
-        }
+        quizManager.answerChecker()
         
         loadNextRoundWithDelay(seconds: 2)
     }
