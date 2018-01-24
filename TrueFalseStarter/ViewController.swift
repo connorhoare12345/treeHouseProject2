@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     let quizManager = QuizManager()
     
-    let questionsPerRound = 4
+    let questionsPerRound = 10
     var questionsAsked = 0
     var correctQuestions = 0
     

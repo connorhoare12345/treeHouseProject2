@@ -33,7 +33,7 @@ class QuizManager {
        QuizModel(question: "Which costume does E.T wear when the kids sneak him out of the house?", possibleAnswers: ["The Old Lady", "A Ghost", "Spiderman", "Flash Gordon"], answer: "A Ghost"),
        QuizModel(question: "Who directed the Young Frankenstein?", possibleAnswers: ["Mel Brooks", "David Zucker", "Woody Allen"], answer: "Mel Brooks"),
        QuizModel(question: "Who is the Fairest one of them all?", possibleAnswers: ["Sleeping Beauty", "Bambi", "Cinderella", "Snow White"], answer: "Snow White"),
-       QuizModel(question: "What is Marilyn Monroe's real name?", possibleAnswers: ["Norma Jane Sunifer", "Norma Jeane Ratimore", "Norma Jeane Mortenson", "Norma Jeane Watson"], answer: "Norma Jeane Ratimore"),
+       QuizModel(question: "What is Marilyn Monroe's real name?", possibleAnswers: ["Norma Jane Sunifer", "Norma Jeane Ratimore", "Norma Jeane Mortenson", "Norma Jeane Watson"], answer: "Norma Jeane Mortenson"),
        QuizModel(question: "Which actor has appeared as James Bond the most?", possibleAnswers: ["Daniel Craig", "Sean Connery", "Roger Moore", "George Lazenby"], answer: "Roger Moore"),
        QuizModel(question: "In the Shawshank Redemption, why does Red say he was named Red?", possibleAnswers: ["Childhood nickname", "He once had red hair", "He killed alot of people", "He is Irish"], answer: "He is Irish"),
        QuizModel(question: "In Iron Man 2, who is the villian", possibleAnswers: ["Tony Stark", "Pepper Pots", "Ivan Vanko"], answer: "Ivan Vanko"),
@@ -49,6 +49,25 @@ class QuizManager {
        QuizModel(question: "I see dead people is a quote from which film?", possibleAnswers: ["Paranormal Activity", "Insidious", "The 6th Sense", "It"], answer: "The 6th Sense"),
        QuizModel(question: "Who plays Fred Claus in the 2007 film?", possibleAnswers: ["Vince Vaughan", "Heath Ledger", "Matt Damon", "Will Smith"], answer: "Vince Vaughan"),
        QuizModel(question: "Which comedy movie features a man who is killed in a car accident and comes back to life as a snowman?", possibleAnswers: ["Bad Santa", "Fred Clause", "Jack Frost"], answer: "Jack Frost"),
+       QuizModel(question: "BB-8 is an astromech droid from which film?", possibleAnswers: ["Star Wars", "Star Trek", "Elysium"], answer: "Star Wars"),
+       QuizModel(question: "In what year was the original Jurassic Park filmed?", possibleAnswers: ["1995", "1996", "1994", "1993"], answer: "1993"),
+       QuizModel(question: "Which actress played Katniss Everdean in the Hunger Games?", possibleAnswers: ["Scarlet Johansen", "Jennifer Lawrence", "Emma Stone"], answer: "Jennifer Lawrence"),
+       QuizModel(question: "Which fictional city is the home of Batman", possibleAnswers: ["Gondoor", "Hogsmead", "Gotham", "Narnia"], answer: "Gotham"),
+       QuizModel(question: "Which actor is know for the saying. I'll Be Back?", possibleAnswers: ["Arnold Schwarzenegger", "Ben Stiller", "Robert Di Niro", "Jean Claude Van Damme"], answer: "Arnold Schwarzenegger"),
+       QuizModel(question: "In which Star Wars film did the Ewoks first appear?", possibleAnswers: ["The Phantom Menace", "Return of the Jedi", "Revenge of the Sith", "A New Hope"], answer: "Return of the Jedi"),
+       QuizModel(question: "Infamous English prisoner, Charles Bronson, was played by what actor in the 2008 film Bronson?", possibleAnswers: ["Mark Wahlburg", "Tom Hardy", "James Franco", "Dave Franco"], answer: "Tom Hardy"),
+       QuizModel(question: "What was the name of the monkey in the Disney movie Aladdin?", possibleAnswers: ["Apu", "Abu", "Adu", "Atu"], answer: "Abu"),
+       QuizModel(question: "Which actor played the main character in the 1990 film Edward Scissorhands?", possibleAnswers: ["Leonardo DiCaprio", "Johnny Depp", "Tom Cruise"], answer: "Johnny Depp"),
+       QuizModel(question: "Who was the male lead in the 1996 summer blockbuster Independence Day?", possibleAnswers: ["Samuel L Jackson", "Will Smith", "Morgan Freeman"], answer: "Will Smith"),
+       QuizModel(question: "What is the only mythological animal mentioned in a Harry Potter book title?", possibleAnswers: ["Phoenix", "Dragon", "Centaur", "Wooky"], answer: "Phoenix"),
+       QuizModel(question: "In the film classic Star Wars, what was the name of the ancient spaceship captained by Han Solo?", possibleAnswers: ["Air Force One", "The Millenium Falcon", "LAX"], answer: "The Millenium Falcon"),
+       QuizModel(question: "In the Superman movies what newspaper does Clark Kent Work for?", possibleAnswers: ["The Daily Echo", "The Super Times", "The Daily Planet", "The Crimson"], answer: "The Daily Planet"),
+       QuizModel(question: "In what movie, if you watch a certain video you'll die in 7 days?", possibleAnswers: ["The Ring", "Paranormal Activity", "Chucky", "The Conjuring"], answer: "The Ring"),
+       QuizModel(question: "In the 'Harry Potter' movies, Severus Snape and Draco Malfoy were members of which house at Hogwarts?", possibleAnswers: ["Slytherin", "Hufflepuff", "Griffyndor", "Ravenclaw"], answer: "Slytherin"),
+       QuizModel(question: "In what year was the first Harry Potter movie released?", possibleAnswers: ["2000", "2001", "2002"], answer: "2001"),
+       QuizModel(question: "The first movie ever given the title “Blockbuster” was which movie?", possibleAnswers: ["Planet of the Apes", "Jaws", "Independance Day", "Titanic"], answer: "Jaws"),
+       QuizModel(question: "In Walt Disney’s Sleeping Beauty, what is the name of the Queen witch?", possibleAnswers: ["Bella Trix La Strange", "Malificent", "Hermione Granger"], answer: "Malificent"),
+       QuizModel(question: "In movie ratings what do the letters PG stand for?", possibleAnswers: ["Peace Guide", "Particularly Good", "Parental Guidance", "Plays Good"], answer: "Parental Guidance")
        ]
     
     // Display Random Question
@@ -81,8 +100,6 @@ class QuizManager {
     func buttonHider(buttonArray: [UIButton], questionLabel: UILabel) {
 
         let question = displayQuestion()
-        
-        let questionField = viewController.questionField
        
         questionLabel.text = question.question
         
