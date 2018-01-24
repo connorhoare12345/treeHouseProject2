@@ -30,7 +30,7 @@ class QuizManager {
        QuizModel(question: "Oranges represent what in The Godfather movies?", possibleAnswers: ["Life", "Death", "A new beggining"], answer: "Death"),
        QuizModel(question: "Who directed the Lord of the Rings and Hobbit movies since 2001?", possibleAnswers: ["Peter Jackson", "James Cameron", "Josh Wheedon"], answer: "Peter Jackson"),
        QuizModel(question: "Apple co-founder Steve Jobs produced one film during his life, which was it?", possibleAnswers: ["Wall-E", "Toy Story", "The Lawnmowerman", "War Games"], answer: "Toy Story"),
-       QuizModel(question: "Which costume does E.T wear when the kids sneak him out of the house?", possibleAnswers: ["The old lady", "A ghost", "Spiderman", "Flash Gordon"], answer: "A Ghost"),
+       QuizModel(question: "Which costume does E.T wear when the kids sneak him out of the house?", possibleAnswers: ["The Old Lady", "A Ghost", "Spiderman", "Flash Gordon"], answer: "A Ghost"),
        QuizModel(question: "Who directed the Young Frankenstein?", possibleAnswers: ["Mel Brooks", "David Zucker", "Woody Allen"], answer: "Mel Brooks"),
        QuizModel(question: "Who is the Fairest one of them all?", possibleAnswers: ["Sleeping Beauty", "Bambi", "Cinderella", "Snow White"], answer: "Snow White"),
        QuizModel(question: "What is Marilyn Monroe's real name?", possibleAnswers: ["Norma Jane Sunifer", "Norma Jeane Ratimore", "Norma Jeane Mortenson", "Norma Jeane Watson"], answer: "Norma Jeane Ratimore"),
@@ -77,8 +77,27 @@ class QuizManager {
                 
         }
     }
-}
+    
+    func buttonHider(buttonArray: [UIButton], questionLabel: UILabel) {
 
+        let question = displayQuestion()
+        
+        let questionField = viewController.questionField
+       
+        questionLabel.text = question.question
+        
+        for i in 0...question.possibleAnswers.count - 1 {
+            buttonArray[i].isHidden = false
+            buttonArray[i].setTitle(question.possibleAnswers[i], for: .normal)
+        }
+        
+        if(question.possibleAnswers.count < buttonArray.count ) {
+            for i in question.possibleAnswers.count...buttonArray.count - 1 {
+                buttonArray[i].isHidden = true
+            }
+        }
+    }
+}
 
 
 

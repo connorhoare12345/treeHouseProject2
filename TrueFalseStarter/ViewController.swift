@@ -46,24 +46,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Display Question with random selection
-    
     func displayQuestion() {
-        let questionDisplayed = quizManager.displayQuestion()
-        questionField.text = questionDisplayed.question
+     
         let buttonArray: [UIButton] = [answerTwo, answerOne, answerThree, answerFour]
-
-        for i in 0...questionDisplayed.possibleAnswers.count - 1 {
-            buttonArray[i].isHidden = false
-            buttonArray[i].setTitle(questionDisplayed.possibleAnswers[i], for: .normal)
-        }
+        quizManager.displayQuestion()
         
-        if( questionDisplayed.possibleAnswers.count < buttonArray.count ) {
-            for i in questionDisplayed.possibleAnswers.count...buttonArray.count - 1 {
-                buttonArray[i].isHidden = true
-            }
-        }
-        
+        // Hides buttons that are not needed in the possible answers to the question
+        quizManager.buttonHider(buttonArray: buttonArray, questionLabel: questionField)
         playAgainButton.isHidden = true
     }
     
