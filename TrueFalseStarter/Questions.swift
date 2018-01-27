@@ -23,7 +23,7 @@ struct QuizModel {
 
 class QuizManager {
     
-    
+    var askedQuestions: [Int] = []
     var questionIndex: Int = 0
     
     let questions = [
@@ -72,12 +72,23 @@ class QuizManager {
     
     // Display Random Question
     
-    func displayQuestion() -> QuizModel {
-        questionIndex = GKRandomSource.sharedRandom().nextInt(upperBound: questions.count)
-        let questionProvider = questions[questionIndex]
-        
-        return questionProvider
+    func displayQuestion() -> QuizModel? {
+        if( askedQuestions.count < self.questions.count ) {
+            repeat {
+                questionIndex = GKRandomSource.sharedRandom().nextInt(upperBound: questions.count)
+            } while( askedQuestions.contains(questionIndex))
+            
+            let questionProvider = questions[questionIndex]
+            
+            return questions[questionIndex]
+        } else {
+            print("All questions have been asked")
+            
+            return nil
+        }
+       
     }
+    
     
     // Check for the correct answer
    
@@ -89,6 +100,8 @@ class QuizManager {
         print(correctAnswer)
         print(answer)
         
+        askedQuestions.append(questionIndex)
+        
         if correctAnswer == answer {
             return true
         } else {
@@ -98,18 +111,18 @@ class QuizManager {
     }
     
     func buttonHider(buttonArray: [UIButton], questionLabel: UILabel) {
-
+        
         let question = displayQuestion()
        
-        questionLabel.text = question.question
+        questionLabel.text = question?.question
         
-        for i in 0...question.possibleAnswers.count - 1 {
+        for i in 0...question!.possibleAnswers.count - 1 {
             buttonArray[i].isHidden = false
-            buttonArray[i].setTitle(question.possibleAnswers[i], for: .normal)
+            buttonArray[i].setTitle(question!.possibleAnswers[i], for: .normal)
         }
         
-        if(question.possibleAnswers.count < buttonArray.count ) {
-            for i in question.possibleAnswers.count...buttonArray.count - 1 {
+        if(question!.possibleAnswers.count < buttonArray.count ) {
+            for i in question!.possibleAnswers.count...buttonArray.count - 1 {
                 buttonArray[i].isHidden = true
             }
         }

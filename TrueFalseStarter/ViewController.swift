@@ -18,12 +18,7 @@ class ViewController: UIViewController {
     let questionsPerRound = 10
     var questionsAsked = 0
     var correctQuestions = 0
-    
     var gameSound: SystemSoundID = 0
-    
-
-    
-
 
     @IBOutlet weak var answerOne: UIButton!
     @IBOutlet weak var answerTwo: UIButton!
@@ -47,12 +42,12 @@ class ViewController: UIViewController {
     }
     
     func displayQuestion() {
-     
         let buttonArray: [UIButton] = [answerTwo, answerOne, answerThree, answerFour]
         quizManager.displayQuestion()
         
         // Hides buttons that are not needed in the possible answers to the question
         quizManager.buttonHider(buttonArray: buttonArray, questionLabel: questionField)
+        print(quizManager.askedQuestions)
         playAgainButton.isHidden = true
     }
     
@@ -88,6 +83,8 @@ class ViewController: UIViewController {
         if questionsAsked == questionsPerRound {
             // Game is over
             displayScore()
+        } else if( quizManager.questions.count >= quizManager.askedQuestions.count ) {
+            displayQuestion()
         } else {
             // Continue game
             displayQuestion()
@@ -103,6 +100,8 @@ class ViewController: UIViewController {
         
         questionsAsked = 0
         correctQuestions = 0
+        quizManager.askedQuestions = []
+        
         nextRound()
     }
     
